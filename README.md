@@ -31,7 +31,7 @@ This project provides an API to interact with a chatbox AI using various models.
 To start the server, run:
 
 ```bash
-npm start
+node index.js
 ```
 
 The server will be available at `http://localhost:3000` (or the port specified in the `.env` file).
