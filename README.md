@@ -1,4 +1,4 @@
-```markdown
+
 # Chatbox API
 
 This project provides an API to interact with a chatbox AI using various models. It is built with Node.js and Express, and uses the `g4f` library for AI interactions.
@@ -89,4 +89,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Author
 Kenneth Panio
-```
