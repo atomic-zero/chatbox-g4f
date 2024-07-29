@@ -12,8 +12,8 @@ This project provides an API to interact with a chatbox AI using various models.
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/atomic-zero/chatbox-g4f
+   cd chatbox-g4f
    ```
 
 2. **Install dependencies**:
@@ -88,6 +88,5 @@ Feel free to open issues or submit pull requests. Please ensure to follow the co
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Author
-
 Kenneth Panio
 ```
