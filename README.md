@@ -1,5 +1,5 @@
 
-# Chatbox API
+# Chatbox-g4f API
 
 This project provides an API to interact with a chatbox AI using various models. It is built with Node.js and Express, and uses the `g4f` library for AI interactions.
 
