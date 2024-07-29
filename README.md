@@ -54,7 +54,7 @@ GET /chatbox?q=hello&uid=3773&model=gpt-4&cai=act%20like%20elon%20musk
 ```
 
 **Response**:
-- On success: JSON object with `answer` (string), `snippets` (array of strings), and `author` (string).
+- On success: JSON object with `answer` (string), and `author` (string).
 - On error: Error message with appropriate HTTP status code.
 
 #### `/chatbox/models`

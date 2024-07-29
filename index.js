@@ -69,7 +69,7 @@ app.get('/chatbox', async (req, res) => {
         { role: "user", content: query }
       ], options);
 
-      answer = response.replace(/```[\s\S]*?```/g, '').trim();
+      answer = response.trim();
       success = true;
     } catch (error) {
       if (attempts >= maxRetries) {
@@ -81,12 +81,8 @@ app.get('/chatbox', async (req, res) => {
   if (success) {
     conversationHistories[uid].push({ role: "assistant", content: answer });
 
-    const codeBlocks = answer.match(/```[\s\S]*?```/g) || [];
-    const cleanAnswer = answer.replace(/```[\s\S]*?```/g, '').trim();
-
     const responseObject = {
-      answer: cleanAnswer,
-      snippets: codeBlocks.map(block => block.replace(/```/g, '').trim()),
+      answer,
       author: "Kenneth Panio"
     };
 
