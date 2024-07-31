@@ -98,6 +98,10 @@ app.get('/chatbox/models', (req, res) => {
   res.json(models);
 });
 
+app.get('/',(req, res) => {
+        res.json({ message: "API IS RUNNING!" })
+});
+
 /**
  * Start the Express server.
  */
