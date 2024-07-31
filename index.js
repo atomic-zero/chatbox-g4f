@@ -1,8 +1,8 @@
-const express = require('express');
+const Fastify = require('fastify');
 const { G4F } = require("g4f");
 const g4f = new G4F();
 
-const app = express();
+const app = Fastify();
 const port = process.env.PORT || 3000;
 
 const conversationHistories = {};
@@ -25,21 +25,21 @@ const models = [
  * 
  * Example: /chatbox?q=hello&uid=3773&model=gpt-4&cai=act%20like%20elon%20musk
  */
-app.get('/chatbox', async (req, res) => {
+app.get('/chatbox', async (req, reply) => {
   const { q: query, uid, model, cai } = req.query;
 
   if (!query || !uid || !model) {
-    return res.status(400).send("Missing query, user ID, or model.");
+    return reply.status(400).send("Missing query, user ID, or model.");
   }
 
   if (!models.includes(model)) {
-    return res.status(400).send("Invalid model. Use /chatbox/models to get a list of available models.");
+    return reply.status(400).send("Invalid model. Use /chatbox/models to get a list of available models.");
   }
 
   // Reset conversation history
   if (['clear', 'reset', 'forgot', 'forget'].includes(query.toLowerCase())) {
     conversationHistories[uid] = [];
-    return res.send({ answer: "Conversation history cleared." });
+    return reply.send({ answer: "Conversation history cleared." });
   }
 
   conversationHistories[uid] = conversationHistories[uid] || [];
@@ -73,7 +73,7 @@ app.get('/chatbox', async (req, res) => {
       success = true;
     } catch (error) {
       if (attempts >= maxRetries) {
-        return res.status(500).send(`No response from CHATBOX AI. Please try again later: ${error.message}`);
+        return reply.status(500).send(`No response from CHATBOX AI. Please try again later: ${error.message}`);
       }
     }
   }
@@ -86,7 +86,7 @@ app.get('/chatbox', async (req, res) => {
       author: "Kenneth Panio"
     };
 
-    res.json(responseObject);
+    reply.send(responseObject);
   }
 });
 
@@ -94,17 +94,21 @@ app.get('/chatbox', async (req, res) => {
  * API Endpoint: /chatbox/models
  * Provides a list of available models.
  */
-app.get('/chatbox/models', (req, res) => {
-  res.json(models);
+app.get('/chatbox/models', (req, reply) => {
+  reply.send(models);
 });
 
-app.get('/',(req, res) => {
-        res.json({ message: "API IS RUNNING!" })
+app.get('/', (req, reply) => {
+  reply.send({ message: "API IS RUNNING!" });
 });
 
 /**
- * Start the Express server.
+ * Start the Fastify server.
  */
-app.listen(port, () => {
-  console.log(`API server running at http://localhost:${port}`);
+app.listen({ port }, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log(`API server running at ${address}`);
 });

@@ -1,13 +1,13 @@
 {
         "name": "chatbox-api",
         "version": "1.0.0",
-        "description": "A Node.js and Express-based API for interacting with a chatbox AI. Allows users to query various AI models and manage conversation histories.",
+        "description": "A Node.js and Fastify-based API for interacting with a chatbox AI. Allows users to query various AI models and manage conversation histories.",
         "main": "index.js",
         "scripts": {
                 "start": "node index.js"
         },
         "dependencies": {
-                "express": "^4.18.2",
+                "fastify": "^4.28.1",
                 "g4f": "^1.4.6"
         },
         "author": "Kenneth Panio",
